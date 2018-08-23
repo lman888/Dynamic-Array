@@ -1,6 +1,1 @@
-﻿  DynamicArray.cpp
-c:\users\liam\documents\visual studio 2017\projects\dynamic array\dynamic array\dynamicarray.cpp(17): error C2061: syntax error: identifier 'm_dynamicData'
-c:\users\liam\documents\visual studio 2017\projects\dynamic array\dynamic array\dynamicarray.cpp(19): error C2440: '=': cannot convert from 'int' to 'int *'
-  c:\users\liam\documents\visual studio 2017\projects\dynamic array\dynamic array\dynamicarray.cpp(19): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
-  Main.cpp
-  Generating Code...
+﻿  Dynamic Array.vcxproj -> C:\Users\Liam\Desktop\Dynamic-Array\Dynamic Array\Debug\Dynamic Array.exe

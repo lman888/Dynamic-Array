@@ -45,7 +45,7 @@ public:
 	~DynamicArray();
 
 	//Pushes an element to the top of array
-	void Push(DynamicArray* a_Value);
+	void Push(DynamicArray a_Value);
 
 	//Prints out the Dynamic Array
 	void Print();
