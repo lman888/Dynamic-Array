@@ -38,33 +38,37 @@ public:
 	//Creates the Dynamica memory on the heap
 	DynamicArray();
 
-	//Creates the initial size of the array
-	DynamicArray(size_t a_InitialCapacity);
-
 	//Frees the allocated memory
 	~DynamicArray();
 
-	//Pushes an element to the top of array
-	void Push(DynamicArray a_Value);
+	//Initializes the array
+	void InitializeArray(size_t a_InitialCapacity);
+
+	//Resizes the Array
+	void Resize();
+
+	void Push(size_t a_value);
+
+	//Removes the top element from the array
+	void Pop();
+
+	void RemoveAt(size_t a_value);
 
 	//Prints out the Dynamic Array
 	void Print();
 
 	//Returns the Size and Capacity of the Dynamic Array
-	size_t GetSize();
-	size_t GetCapacity();
+	size_t GetAt(size_t a_index);
+
+	//Returns the variable of m_arrayElements
+	size_t GetArraySize() { return m_arrayElements; }
 
 private:
 
-	DynamicArray * m_data;
-
 	//This is the arrays Data, its initial starting capacity
 	//The arrays capacity and the arrays size
-	size_t m_initialCapacity;
+	size_t *m_array;
 	size_t m_arrayCapacity;
-	size_t m_arraySize;
-
-	//Resizes the array
-	size_t Resize();
+	size_t m_arrayElements;
 };
 
