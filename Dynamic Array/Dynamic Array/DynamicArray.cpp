@@ -7,7 +7,7 @@ DynamicArray::DynamicArray()
 	//Creates a base Array with a capacity of 10 and a size of 0
 	m_arrayCapacity = 10;
 
-	m_arrayElements = 0;
+	m_currentSize = 0;
 
 	m_array = new size_t[m_arrayCapacity];
 }
@@ -30,7 +30,7 @@ void DynamicArray::InitializeArray(size_t a_InitialCapacity)
 void DynamicArray::Resize()
 {
 	//Resize the array when the size reaches the capacity
-	if (m_arrayElements == m_arrayCapacity)
+	if (m_currentSize == m_arrayCapacity)
 	{
 		//Double the size of the Dynamic Array
 		m_arrayCapacity *= 2;
@@ -39,7 +39,7 @@ void DynamicArray::Resize()
 		size_t* m_tempArray = new size_t[m_arrayCapacity];
 
 		//Copies all the current values across to the new array
-		for (size_t i = 0; i < m_arrayElements; i++)
+		for (size_t i = 0; i < m_currentSize; i++)
 		{
 			//Pushes all the data from the old array into the new array
 			m_tempArray[i] = m_array[i];
@@ -51,61 +51,58 @@ void DynamicArray::Resize()
 		m_array = m_tempArray;
 
 		//Initialize our new array with all our elements
-		InitializeArray(m_arrayElements);
+		InitializeArray(m_currentSize);
 	}
 }
 
 void DynamicArray::Push(size_t a_value)
 {
 	//If the array size meets or is more then the capacity it will resize
-	if (m_arrayElements >= m_arrayCapacity)
+	if (m_currentSize >= m_arrayCapacity)
 	{
 		Resize();
 	}
 
 	//Increments the size and adds the value to the new spot
-	m_array[m_arrayElements++] = a_value;
+	m_array[m_currentSize++] = a_value;
 }
 
 void DynamicArray::Pop()
 {
-	m_arrayElements--;
+	m_currentSize--;
 }
 
 void DynamicArray::RemoveAt(size_t a_value)
 {
 	//Iterates through the current elements in the array
-	for (size_t i = 0; i < m_arrayElements; i++)
-	{
-		//Finds the element that the user wants to remove
-		if (m_array[i] == a_value)
-		{
-			//Assigns the next element in the array to the current location
-			m_array[i] = m_array[i + 1];
-
-			//Pushes the current element back one and deletes it
-			m_array[m_arrayElements - 1] = 0;
-			m_arrayElements = m_arrayElements - 1;
-		}
-
+	for (size_t i = a_value + 1; i < m_currentSize; i++)
+	{	
+		//Copies each element after the value back one spot
+		m_array[i - 1] = m_array[i];
 	}
+
+	//Reduces the size by one
+	m_currentSize--;
 }
 
 void DynamicArray::Print()
 {
 	//Goes throw each elemet of the array and prints it as well as the capacity
-	for (size_t i = 0; i < m_arrayElements; i++)
+	for (size_t i = 0; i < m_currentSize; i++)
 	{
-		std::cout << GetAt(i) << std::endl;
+		std::cout << GetAt(i) << " " << std::endl;
 	}
+}
 
-	std::cout  << "Array Capacity " << m_arrayCapacity << std::endl;
+void DynamicArray::PrintCapacity()
+{
+	std::cout << m_arrayCapacity << std::endl;
 }
 
 size_t DynamicArray::GetAt(size_t a_index)
 {
 	//If the user input was less then 0 or more then the amount elements in the array
-	if (a_index < 0 || a_index > m_arrayElements)
+	if (a_index < 0 || a_index > m_currentSize)
 	{
 		std::cout << "Out of Bounds" << std::endl;
 	}

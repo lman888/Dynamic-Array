@@ -23,12 +23,18 @@ int main()
 
 	Array.Print();
 
+	std::cout << "----------------------------" << std::endl;
+
 	Array.Pop();
 	Array.Pop();
 
 	Array.Print();
 
+	std::cout << "----------------------------" << std::endl;
+
 	Array.RemoveAt(4);
+
+	std::cout << "----------------------------" << std::endl;
 
 	Array.Print();
 
